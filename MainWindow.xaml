@@ -4,9 +4,147 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicPlayerAcrylicUI"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        WindowStyle="None"
+        Title="MainWindow"
+        WindowState="Maximized" Height="768" Width="1366" Background="Transparent"
+        AllowsTransparency="True">
+    <Grid >
+        <!-- Imagen de fondo desenfocada -->
+        <Image Source="C:\Users\Alienware\RiderProjects\MusicPlayerUI\Images\500x500-000000-80-0-0.jpg" Stretch="UniformToFill" VerticalAlignment="Center" >
+            <Image.Effect>
+                <BlurEffect Radius="90" />
+            </Image.Effect>
+        </Image>
 
+        <Rectangle Fill="#98000000" />
+        <!-- Contenido con tres filas -->
+        <Grid Background="Transparent" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Label centrado -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Content="Rebels Never Die" FontWeight="DemiBold" FontSize="20" Margin="30" Foreground="White" />
+                    </StackPanel>
+
+                    <!-- Label alineado a la derecha -->
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <iconPacks:PackIconMaterial Kind="DotsHorizontal" Foreground="White" Margin="40" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Contenido de la primera columna -->
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Border Height="500" Width="500" Margin="0 0 0 0">
+                            <Border.Background>
+                                <ImageBrush ImageSource="C:\Users\Alienware\RiderProjects\MusicPlayerUI\Images\500x500-000000-80-0-0.jpg"></ImageBrush>
+                            </Border.Background>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="50 0 0 0" >
+                        <StackPanel Orientation="Vertical" Margin="0 45 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500">
+                            <Label Content="Hardwell" FontWeight="DemiBold" FontSize="15" Foreground="White"/>
+                            <Label Content="Rebels Never Die" FontWeight="DemiBold" FontSize="10" Foreground="White"/>
+                            <DockPanel>
+                                <Label Content="15 Songs" FontWeight="DemiBold" FontSize="10" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
+                                <Label Content="3h 25min" DockPanel.Dock="Right" FontWeight="DemiBold" FontSize="10" HorizontalAlignment="Right" VerticalAlignment="Center"  Foreground="White"/>
+                            </DockPanel>
+                        </StackPanel>
+                        <ListView x:Name="songList" Background="Transparent"  BorderBrush="Transparent" >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderThickness="0,1,0,0" Height="35" Background="Transparent" BorderBrush="Gray">
+                                            <Grid Margin="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="400" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Foreground="White" FontWeight="DemiBold" Text="{Binding ImageUrl}"
+                                                           VerticalAlignment="Center" Margin="0,0,0,0" />
+                                                
+                                                <TextBlock Grid.Column="1" FontWeight="DemiBold" Text="{Binding SongName}" Foreground="White"
+                                                           VerticalAlignment="Center" Margin="5,0,0,0" />
+
+                                                <TextBlock Grid.Column="2" FontWeight="DemiBold" Text="{Binding  ArtistName}" Foreground="White"
+                                                           VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0,0,0" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+              <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Columna 1: StackPanel horizontal con 3 iconos -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <iconPacks:PackIconMaterial Kind="Rewind" Foreground="White" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <iconPacks:PackIconMaterial Kind="Play" Foreground="White" Margin="25" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <iconPacks:PackIconMaterial Kind="FastForward" Foreground="White" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                </StackPanel>
+
+                <!-- Columna 2: StackPanel vertical -->
+                <StackPanel Grid.Column="1" Width="500" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <!-- DockPanel con Label a la izquierda y 3 iconos a la derecha -->
+                    <DockPanel Margin="0 0 0 5" >
+                        <Label Content="Rebels Never Die" FontWeight="DemiBold" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Foreground="White"/>
+                       
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <iconPacks:PackIconMaterial HorizontalAlignment="Right" Kind="Heart" Foreground="White" Width="20" VerticalAlignment="Center"  />
+                            <iconPacks:PackIconMaterial HorizontalAlignment="Right" Kind="Repeat" Foreground="White" Margin="10 0 10 0" Width="20" VerticalAlignment="Center"  />
+                            <iconPacks:PackIconMaterial HorizontalAlignment="Right" Kind="Music" Foreground="White" Width="20" VerticalAlignment="Center"  />
+
+                        </StackPanel>
+                        
+                    </DockPanel>
+                    <!-- Slider -->
+                    <ProgressBar Minimum="0" Value="30"  Maximum="100" Width="500" Margin="5 0 5 0"/>
+                    <!-- Otro DockPanel con Label a la izquierda y otro a la derecha -->
+                    <DockPanel Margin="0  0 0 10">
+                        <Label Content="Hardwell" FontWeight="DemiBold" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Foreground="White"/>
+                        <Label Content="4:30" FontWeight="DemiBold" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="12" Foreground="White"/>
+                    </DockPanel>
+                </StackPanel>
+
+                <!-- Columna 3: StackPanel horizontal con un icono, un Label, y otro icono -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <iconPacks:PackIconMaterial HorizontalAlignment="Right" Kind="VolumeLow" Foreground="White" Width="20" VerticalAlignment="Center"  />
+                    <ProgressBar Minimum="0" Value="30"  Maximum="100" Width="150" Margin="10"/>
+                    <iconPacks:PackIconMaterial HorizontalAlignment="Right" Kind="VolumeHigh" Foreground="White" Width="20" VerticalAlignment="Center"  />
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

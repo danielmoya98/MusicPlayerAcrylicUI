@@ -10,4 +10,3 @@ namespace MusicPlayerAcrylicUI;
 public partial class App : Application
 {
 }
-
